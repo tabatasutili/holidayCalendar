@@ -14,8 +14,9 @@ class SearchHolidaysViewController: UIViewController {
     
     let countryTextField: UITextField = {
             let textField = UITextField()
-            textField.placeholder = "Enter text"
+            textField.placeholder = "Escolha o país"
             textField.borderStyle = .roundedRect
+            //textField.edit = .
             textField.translatesAutoresizingMaskIntoConstraints = false
             return textField
         }()
@@ -27,7 +28,7 @@ class SearchHolidaysViewController: UIViewController {
         }()
     let yearTextField: UITextField = {
             let textField = UITextField()
-            textField.placeholder = "Enter text"
+            textField.placeholder = "Escolha o ano"
             textField.borderStyle = .roundedRect
             textField.translatesAutoresizingMaskIntoConstraints = false
             return textField
@@ -38,33 +39,60 @@ class SearchHolidaysViewController: UIViewController {
             pickerView.translatesAutoresizingMaskIntoConstraints = false
             return pickerView
         }()
-    let Button: UIButton = {
-            let textField = UIButton()
-                        textField.translatesAutoresizingMaskIntoConstraints = false
-            return textField
+    let searchButton: UIButton = {
+            let button = UIButton(type: .system)
+            button.setTitle("Pesquisar", for: .normal)
+            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            return button
         }()
 
-    let country = ["Option 1", "Option 2", "Option 3", "Option 4"]
-    let year = [" 1", " 2", " 3", " 4"]
+    let country = ["BR", "BB", "DK", "MG"]
+    let year = ["2023", "2024", "2021", "2022"]
 
-        
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         view.addSubview(countryTextField)
         view.addSubview(yearTextField)
+        view.addSubview(searchButton)
+        
+        config()
+        addConstraints()
+        
+        
+    }
+    
+    @objc func rightButtonTapped() {
+           print("Right button tapped!")
+           // Add your desired action here
+       }
+    
+    func config() {
+        title = "Feriados"
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
+        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(rightButtonTapped))
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
+        self.view.backgroundColor = .white
+        
         
         countryTextField.inputView = countryPickerView
         yearTextField.inputView = yearPickerView
         
         countryPickerView.delegate = self
         countryPickerView.dataSource = self
-        
         yearPickerView.delegate = self
         yearPickerView.dataSource = self
         
-        addConstraints()
+        countryTextField.delegate = self
+        yearTextField.delegate = self
+        countryTextField.tintColor = .clear
+        yearTextField.tintColor = .clear
+                
+        searchButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
     }
     
@@ -76,13 +104,28 @@ class SearchHolidaysViewController: UIViewController {
             
             yearTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             yearTextField.topAnchor.constraint(equalTo: countryTextField.bottomAnchor, constant: 20),
-            yearTextField.widthAnchor.constraint(equalToConstant: 300)
+            yearTextField.widthAnchor.constraint(equalToConstant: 300),
+            
+            searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchButton.topAnchor.constraint(equalTo: yearTextField.bottomAnchor, constant: 20),
+            searchButton.widthAnchor.constraint(equalToConstant: 300)
             
             
             ])
         
     }
     
+    @objc func buttonTapped() {
+        if !(yearTextField.text!.count == 0) && !(countryTextField.text!.count == 0) {
+            print("Button tapped! \(country)")
+            print("Button tapped! \(yearTextField.text)")
+            let viewController = ListHolidaysViewController()
+            self.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            print("Selecione os compos de país e ano para continuar")
+        }
+        
+    }
     
 }
 
@@ -125,4 +168,10 @@ extension SearchHolidaysViewController: UIPickerViewDelegate, UIPickerViewDataSo
             }
     }
 
+}
+extension SearchHolidaysViewController: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+     }
+    
 }
