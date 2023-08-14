@@ -11,6 +11,8 @@
 		0441DCC92A86D07000F64A8B /* HolidayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCC82A86D07000F64A8B /* HolidayModel.swift */; };
 		0441DCCE2A86D0C700F64A8B /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCCD2A86D0C700F64A8B /* JSONNull.swift */; };
 		0441DCD42A86D22F00F64A8B /* SearchHolidaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCD32A86D22F00F64A8B /* SearchHolidaysViewController.swift */; };
+		044810912A8A8CBB00ADCF8B /* HolidayDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044810902A8A8CBB00ADCF8B /* HolidayDetailsView.swift */; };
+		0448109A2A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044810992A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift */; };
 		044968852A880367000E3D54 /* ListHolidaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044968842A880367000E3D54 /* ListHolidaysViewController.swift */; };
 		0449688A2A8804E5000E3D54 /* HolidayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044968892A8804E5000E3D54 /* HolidayDetailViewController.swift */; };
 		0449688F2A88051A000E3D54 /* HolidayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449688E2A88051A000E3D54 /* HolidayTableViewCell.swift */; };
@@ -50,6 +52,8 @@
 		0441DCC82A86D07000F64A8B /* HolidayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayModel.swift; sourceTree = "<group>"; };
 		0441DCCD2A86D0C700F64A8B /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
 		0441DCD32A86D22F00F64A8B /* SearchHolidaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHolidaysViewController.swift; sourceTree = "<group>"; };
+		044810902A8A8CBB00ADCF8B /* HolidayDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayDetailsView.swift; sourceTree = "<group>"; };
+		044810992A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayDetailsViewModel.swift; sourceTree = "<group>"; };
 		044968842A880367000E3D54 /* ListHolidaysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListHolidaysViewController.swift; sourceTree = "<group>"; };
 		044968892A8804E5000E3D54 /* HolidayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayDetailViewController.swift; sourceTree = "<group>"; };
 		0449688E2A88051A000E3D54 /* HolidayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayTableViewCell.swift; sourceTree = "<group>"; };
@@ -98,6 +102,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0448108A2A8A84EB00ADCF8B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0441DCD32A86D22F00F64A8B /* SearchHolidaysViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0448108B2A8A84F400ADCF8B /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				044968892A8804E5000E3D54 /* HolidayDetailViewController.swift */,
+				044810902A8A8CBB00ADCF8B /* HolidayDetailsView.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		0448108C2A8A853800ADCF8B /* List */ = {
+			isa = PBXGroup;
+			children = (
+				044968982A880631000E3D54 /* ListHolidaysViewModel.swift */,
+				044968932A8805CE000E3D54 /* HolidayCellViewModel.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		044810982A8A8D3400ADCF8B /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				044810992A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		044968832A88034C000E3D54 /* List */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +171,7 @@
 				04701B012A8687C0004D79D4 /* Service */,
 				04701B002A8687B2004D79D4 /* ViewModel */,
 				04701AFF2A8687A6004D79D4 /* View */,
+				044968A82A88313D000E3D54 /* ViewCode.swift */,
 				04701AFE2A868793004D79D4 /* Model */,
 				04701AFD2A86814B004D79D4 /* Base */,
 				046EC14C2A85D81400E313C4 /* AppDelegate.swift */,
@@ -183,10 +222,9 @@
 		04701AFF2A8687A6004D79D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0448108A2A8A84EB00ADCF8B /* Search */,
 				044968832A88034C000E3D54 /* List */,
-				0441DCD32A86D22F00F64A8B /* SearchHolidaysViewController.swift */,
-				044968892A8804E5000E3D54 /* HolidayDetailViewController.swift */,
-				044968A82A88313D000E3D54 /* ViewCode.swift */,
+				0448108B2A8A84F400ADCF8B /* Details */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -194,8 +232,8 @@
 		04701B002A8687B2004D79D4 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				044968932A8805CE000E3D54 /* HolidayCellViewModel.swift */,
-				044968982A880631000E3D54 /* ListHolidaysViewModel.swift */,
+				0448108C2A8A853800ADCF8B /* List */,
+				044810982A8A8D3400ADCF8B /* Details */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -343,6 +381,7 @@
 				046EC1512A85D81400E313C4 /* ViewController.swift in Sources */,
 				0441DCD42A86D22F00F64A8B /* SearchHolidaysViewController.swift in Sources */,
 				044968A92A88313D000E3D54 /* ViewCode.swift in Sources */,
+				0448109A2A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift in Sources */,
 				0441DCC92A86D07000F64A8B /* HolidayModel.swift in Sources */,
 				0449688F2A88051A000E3D54 /* HolidayTableViewCell.swift in Sources */,
 				046EC14D2A85D81400E313C4 /* AppDelegate.swift in Sources */,
@@ -351,6 +390,7 @@
 				0449688A2A8804E5000E3D54 /* HolidayDetailViewController.swift in Sources */,
 				0449689E2A8816EB000E3D54 /* RequestError.swift in Sources */,
 				0441DCC42A86CFAE00F64A8B /* ServiceManager.swift in Sources */,
+				044810912A8A8CBB00ADCF8B /* HolidayDetailsView.swift in Sources */,
 				044968942A8805CE000E3D54 /* HolidayCellViewModel.swift in Sources */,
 				044968992A880631000E3D54 /* ListHolidaysViewModel.swift in Sources */,
 			);

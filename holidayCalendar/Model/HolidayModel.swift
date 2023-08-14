@@ -9,7 +9,9 @@ import Foundation
 
 // MARK: - Holiday
 struct HolidayModel: Codable {
-    let date, localName, name: String
+    let date: String
+    let localName: String
+    let name: String
     let countryCode: CountryCode
     let fixed, global: Bool
     let counties: [String]?

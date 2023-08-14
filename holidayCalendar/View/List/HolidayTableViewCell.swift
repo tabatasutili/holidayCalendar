@@ -12,36 +12,35 @@ import UIKit
 class HolidayTableViewCell: UITableViewCell {
     static let identifier:String = "HolidayTableViewCell"
     
-    var viewModel:HolidayCellViewModel?
+    private var viewModel:HolidayCellViewModel?
     
-    lazy var view: UIView = {
+    private lazy var view: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .blue
         view.clipsToBounds = true
         view.layer.cornerRadius = 20
         return view
         
     }()
     
-    lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .boldSystemFont(ofSize: 18)
-        label.textColor = .darkGray
+        label.textColor = .white
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
-            
             
         return label
         
     }()
     
-    lazy var dateLabel: UILabel = {
+    private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkGray
+        label.textColor = .white
         return label
         
     }()
@@ -50,17 +49,30 @@ class HolidayTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
-
+        self.view.backgroundColor = .clear
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    private func setupShadow() {
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowOffset = CGSize(width: 4, height: 4) // Direção para direita e para baixo
+        view.layer.shadowRadius = 4
+        view.layer.cornerRadius = 8 // Se você quiser cantos arredondados
+            
+            // Certifique-se de ajustar o valor do "shadowPath" para o caminho apropriado se desejar melhorar o desempenho.
+        view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
+        }
+
         
     public func setUpInfo(holiday: HolidayModel) {
         self.viewModel = HolidayCellViewModel(holiday: holiday)
         self.nameLabel.text = viewModel?.getName
         self.dateLabel.text = viewModel?.getDate
+        self.view.applyGradient(colors: [Helper().UIColorFromRGB(0x2B95CE).cgColor, Helper().UIColorFromRGB(0x2ECAD5).cgColor])
     }
     
 }
@@ -90,11 +102,12 @@ extension HolidayTableViewCell: ViewCode {
             self.dateLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
-        
     }
     
     func setupAditionalConfiguration() {
+        
         //self.contentView.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00)
         
     }
 }
+

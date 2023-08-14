@@ -14,14 +14,20 @@ class ListHolidaysViewModel {
     
     private let service = ServiceManager()
     private var holidayList: Holidays = []
+    private var country: String
+    private var year: String
     private weak var delegate:viewModelDelegate?
     
-    init() {
+    
+    init(country: String, year: String) {
+        self.country = country
+        self.year = year
         self.fetchHolidays()
     }
     
     private func fetchHolidays() {
-        guard let url = URL(string: "https://date.nager.at/api/v3/PublicHolidays/2023/BR") else { return }
+        let urlConcatenetion = "https://date.nager.at/api/v3/PublicHolidays/"+year+"/"+country
+        guard let url = URL(string: urlConcatenetion) else { return }
         let urlRequest = URLRequest(url: url)
         service.fetch(url: urlRequest, completion: { (result: Result<Holidays, Error>) in
             switch result {
@@ -58,6 +64,12 @@ class ListHolidaysViewModel {
         return holidayList
         }
     
+    public var getCountry:String {
+        return self.country
+        }
     
+    public var getYear:String {
+        return self.year
+        }
     
 }

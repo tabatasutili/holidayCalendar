@@ -11,13 +11,23 @@ import UIKit
 
 class ListHolidaysViewController: UIViewController {
     
-    let viewModel = ListHolidaysViewModel()
+    private let viewModel: ListHolidaysViewModel
     
-    lazy var tableView:UITableView = {
+    private lazy var titleLabel: UILabel = {
+          let label = UILabel()
+          label.translatesAutoresizingMaskIntoConstraints = false
+          label.font = .boldSystemFont(ofSize: 18)
+          label.textColor = .darkGray
+          label.numberOfLines = 0
+          label.lineBreakMode = .byWordWrapping
+          label.textAlignment = .center
+          return label
+        
+       }()
+    
+    private lazy var tableView:UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        //tableView.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00)
-
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
@@ -25,10 +35,19 @@ class ListHolidaysViewController: UIViewController {
         
         return tableView
     }()
+    
+    init(viewModel: ListHolidaysViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) is not supported")
+    }
 
     override func viewDidLoad() {
         setupView()
-//        self.viewModel.fetchCharacters(pagination: false)
+        self.titleLabel.text = viewModel.getCountry+" "+viewModel.getYear
         self.viewModel.delegate(delegate: self)
     }
 }
@@ -36,11 +55,16 @@ class ListHolidaysViewController: UIViewController {
 extension ListHolidaysViewController: ViewCode {
     func buildViewHierarchy() {
         view.addSubview(tableView)
+        view.addSubview(titleLabel)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.widthAnchor.constraint(equalToConstant: 300),
+            
+            self.tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
@@ -50,7 +74,7 @@ extension ListHolidaysViewController: ViewCode {
     }
     
     func setupAditionalConfiguration() {
-        //self.view.backgroundColor = UIColor(red: 0.95, green: 0.94, blue: 0.91, alpha: 1.00)
+        self.view.backgroundColor = .white
         
     }
     
@@ -75,10 +99,9 @@ extension ListHolidaysViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("Clicou na celula")
         let currentHoliday = self.viewModel.currentHoliday(indexPath: indexPath)
-        //CharacterDetailViewModel(currentHoliday: currentHoliday)
-        let detailViewController = HolidayDetailViewController()
-        //detailViewController.character = character
-        self.present(detailViewController, animated: true, completion: nil)
+        let viewModel = HolidayDetailsViewModel(holiday: currentHoliday)
+        let detailViewController = HolidayDetailViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(detailViewController, animated: true)
         
     }
 
