@@ -15,29 +15,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carregando_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-CU-am6">
-                                <rect key="frame" x="149.5" y="436" width="115" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holiday Calendar" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNB-CU-am6">
+                                <rect key="frame" x="129.5" y="436" width="155" height="24"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="C1t-19-JVV"/>
-                                    <constraint firstAttribute="width" constant="115" id="KN9-dm-FYe"/>
+                                    <constraint firstAttribute="width" constant="155" id="I8Q-21-BIH"/>
+                                    <constraint firstAttribute="height" constant="24" id="oFo-S6-0Se"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" red="0.94043910500000005" green="0.92612475159999996" blue="0.89049965139999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
+                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.1764705882352941" green="0.69019607843137254" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.17196628450000001" green="0.66744464640000001" blue="0.81910687689999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wNB-CU-am6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Mj-Kk-7la"/>
-                            <constraint firstItem="wNB-CU-am6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Fkf-G9-rv9"/>
+                            <constraint firstItem="wNB-CU-am6" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="91R-e2-Can"/>
+                            <constraint firstItem="wNB-CU-am6" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ZIO-in-ffl"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="-30.434782608695656" y="265.84821428571428"/>
         </scene>
     </scenes>
 </document>

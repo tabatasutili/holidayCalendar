@@ -12,9 +12,16 @@ class ServiceManager {
     func fetch<T: Decodable>(url: URLRequest, completion: @escaping (Result<T, Error>) -> Void) {
 
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
 
             guard let data = data else {
                 print("Error accessing swapi.co: \(error)")
+                let dataError = NSError(domain: "YourApp", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data received"])
+                completion(.failure(dataError))
                 return
             }
 

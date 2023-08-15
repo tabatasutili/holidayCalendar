@@ -9,56 +9,61 @@ import Foundation
 
 class HolidayDetailsViewModel {
     private var holiday:HolidayModel
+    private var detailsList: [String] = []
     
     init(holiday:HolidayModel) {
         self.holiday = holiday
+        self.appendDetailsList()
+    }
+    
+    private func appendDetailsList() {
+        detailsList.append(getName)
+        detailsList.append(getInternationalName)
+        detailsList.append(getDate)
+        detailsList.append(getType)
+        detailsList.append(getGobal)
+        detailsList.append(getFixed)
+        
     }
     
     public var getName:String {
-        return "Nome local: " + self.holiday.localName
+        return Constants.localNameTitle + self.holiday.localName
     }
     
     public var getInternationalName:String {
-        return "Nome internacional: " + self.holiday.name
+        return Constants.internationalNameTitle + self.holiday.name
     }
     
     public var getDate:String {
-        return "Data: " + self.holiday.date
-    }
-    
-    public var getStatus:String {
-        return "Data: " + self.holiday.date
+        return Constants.dateTitle + self.holiday.date
     }
     
     public var getType:String {
         switch self.holiday.types[0] {
         case .bank:
-            return "Facultativo: " + "Sim, exceto para bancos"
+            return Constants.typeTitle + Constants.bank
         case .typeOptional:
-            return "Facultativo: " + "Sim, para todos"
+            return Constants.typeTitle + Constants.yes
         case .typePublic:
-            return "Facultativo: " + "Não, obrigatorio"
+            return Constants.typeTitle + Constants.no
         }
     }
     
     public var getGobal:String {
         let isGlobal = self.holiday.global
-        return "Global: " + (isGlobal ? "Sim" : "Não")
+        return Constants.globalTitle + (isGlobal ? Constants.yes : Constants.no)
     }
     public var getFixed:String {
         let isFixed = self.holiday.fixed
-        return "Data fixa: " + (isFixed ? "Sim" : "Não")
+        return Constants.fixedTitle + (isFixed ? Constants.yes : Constants.no)
     }
     
-    func formatDate(dateString: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        if let date = dateFormatter.date(from: dateString) {
-            let newDateFormatter = DateFormatter()
-            newDateFormatter.dateFormat = "dd/MM/yy"
-            return newDateFormatter.string(from: date)
-        }
-        return "00/00/00"
+    public var numbOfRows:Int {
+        return detailsList.count
     }
-
+    
+    public func currentDetail(indexPath: IndexPath) -> String {
+            return self.detailsList[indexPath.row]
+        }
+    
 }

@@ -27,13 +27,13 @@ class HolidayCellViewModel {
     
     func formatDate(dateString: String) -> String {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = Constants.dateFormatOriginal
             if let date = dateFormatter.date(from: dateString) {
                 let newDateFormatter = DateFormatter()
-                newDateFormatter.dateFormat = "dd, MMMM"
+                newDateFormatter.dateFormat = Constants.dateFormated
                 return newDateFormatter.string(from: date)
             }
-            return "00/00/00"
+            return Constants.dateDefault
         }
     
 }

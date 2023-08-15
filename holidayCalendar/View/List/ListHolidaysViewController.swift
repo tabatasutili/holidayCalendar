@@ -17,8 +17,8 @@ class ListHolidaysViewController: UIViewController {
           let label = UILabel()
           label.translatesAutoresizingMaskIntoConstraints = false
           label.font = .boldSystemFont(ofSize: 18)
-          label.textColor = .darkGray
-          label.numberOfLines = 0
+          label.textColor = UIColor(red: 0.02, green: 0.31, blue: 0.41, alpha: 1.00)
+          label.numberOfLines = Constants.numberZero
           label.lineBreakMode = .byWordWrapping
           label.textAlignment = .center
           return label
@@ -47,7 +47,7 @@ class ListHolidaysViewController: UIViewController {
 
     override func viewDidLoad() {
         setupView()
-        self.titleLabel.text = viewModel.getCountry+" "+viewModel.getYear
+        self.titleLabel.text = viewModel.getCountry+" - "+viewModel.getYear
         self.viewModel.delegate(delegate: self)
     }
 }
@@ -61,10 +61,10 @@ extension ListHolidaysViewController: ViewCode {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.widthAnchor.constraint(equalToConstant: 300),
             
-            self.tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 20),
+            self.tableView.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor)
@@ -74,6 +74,8 @@ extension ListHolidaysViewController: ViewCode {
     }
     
     func setupAditionalConfiguration() {
+        let customBackButton = UIBarButtonItem(title: Constants.back, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = customBackButton
         self.view.backgroundColor = .white
         
     }
@@ -93,11 +95,10 @@ extension ListHolidaysViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 105
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Clicou na celula")
         let currentHoliday = self.viewModel.currentHoliday(indexPath: indexPath)
         let viewModel = HolidayDetailsViewModel(holiday: currentHoliday)
         let detailViewController = HolidayDetailViewController(viewModel: viewModel)
@@ -107,9 +108,19 @@ extension ListHolidaysViewController: UITableViewDelegate, UITableViewDataSource
 
 }
 
-extension ListHolidaysViewController: viewModelDelegate {
+extension ListHolidaysViewController: ReloadDataDelegate {
     func reloadTableView() {
         self.tableView.reloadData()
+    }
+    
+    func showAlert() {
+        let alertManager = AlertManager()
+        guard let navigationController = self.navigationController else { return }
+        alertManager.showAlert(title: Constants.alertErrorTitle,
+                               message: Constants.alertErrorMessag,
+                               goBack: true,
+                               navigationController: navigationController)
+
     }
     
     

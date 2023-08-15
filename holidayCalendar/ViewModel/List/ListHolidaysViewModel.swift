@@ -7,16 +7,13 @@
 
 import Foundation
 
-protocol viewModelDelegate: NSObject {
-     func reloadTableView()
-}
 class ListHolidaysViewModel {
     
     private let service = ServiceManager()
     private var holidayList: Holidays = []
     private var country: String
     private var year: String
-    private weak var delegate:viewModelDelegate?
+    private weak var delegate:ReloadDataDelegate?
     
     
     init(country: String, year: String) {
@@ -26,16 +23,18 @@ class ListHolidaysViewModel {
     }
     
     private func fetchHolidays() {
-        let urlConcatenetion = "https://date.nager.at/api/v3/PublicHolidays/"+year+"/"+country
+        let urlConcatenetion = Constants.apiUrl+year+Constants.bar+country
         guard let url = URL(string: urlConcatenetion) else { return }
         let urlRequest = URLRequest(url: url)
         service.fetch(url: urlRequest, completion: { (result: Result<Holidays, Error>) in
             switch result {
             case .success(let sucess):
-                print("\(sucess)")
                 self.appendList(holidays: sucess)
+                
             case .failure(let error):
-                 print("Erro na chamas\(error)")
+                DispatchQueue.main.async {
+                    self.delegate?.showAlert()
+                  }
             }
         })
         
@@ -48,7 +47,7 @@ class ListHolidaysViewModel {
           }
         }
     
-    public func delegate(delegate:viewModelDelegate?) {
+    public func delegate(delegate:ReloadDataDelegate?) {
            self.delegate = delegate
        }
     
@@ -73,3 +72,5 @@ class ListHolidaysViewModel {
         }
     
 }
+
+
