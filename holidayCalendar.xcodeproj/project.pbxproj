@@ -15,6 +15,7 @@
 		040D994E2A8B1F6300B6A4B0 /* SearchHolidaysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D994D2A8B1F6300B6A4B0 /* SearchHolidaysViewModel.swift */; };
 		040D99562A8B247400B6A4B0 /* ReloadDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D99552A8B247400B6A4B0 /* ReloadDataDelegate.swift */; };
 		040D99602A8B29E600B6A4B0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040D995F2A8B29E600B6A4B0 /* Constants.swift */; };
+		04245F772A8BFEF0000ADB5E /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04245F762A8BFEF0000ADB5E /* Country.swift */; };
 		0441DCC42A86CFAE00F64A8B /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCC32A86CFAE00F64A8B /* ServiceManager.swift */; };
 		0441DCC92A86D07000F64A8B /* HolidayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCC82A86D07000F64A8B /* HolidayModel.swift */; };
 		0441DCCE2A86D0C700F64A8B /* JSONNull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441DCCD2A86D0C700F64A8B /* JSONNull.swift */; };
@@ -30,7 +31,6 @@
 		044968A92A88313D000E3D54 /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044968A82A88313D000E3D54 /* ViewCode.swift */; };
 		046EC14D2A85D81400E313C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EC14C2A85D81400E313C4 /* AppDelegate.swift */; };
 		046EC14F2A85D81400E313C4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EC14E2A85D81400E313C4 /* SceneDelegate.swift */; };
-		046EC1512A85D81400E313C4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046EC1502A85D81400E313C4 /* ViewController.swift */; };
 		046EC1542A85D81400E313C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046EC1522A85D81400E313C4 /* Main.storyboard */; };
 		046EC1562A85D81700E313C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 046EC1552A85D81700E313C4 /* Assets.xcassets */; };
 		046EC1592A85D81700E313C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046EC1572A85D81700E313C4 /* LaunchScreen.storyboard */; };
@@ -64,6 +64,7 @@
 		040D994D2A8B1F6300B6A4B0 /* SearchHolidaysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHolidaysViewModel.swift; sourceTree = "<group>"; };
 		040D99552A8B247400B6A4B0 /* ReloadDataDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReloadDataDelegate.swift; sourceTree = "<group>"; };
 		040D995F2A8B29E600B6A4B0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04245F762A8BFEF0000ADB5E /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		0441DCC32A86CFAE00F64A8B /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		0441DCC82A86D07000F64A8B /* HolidayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayModel.swift; sourceTree = "<group>"; };
 		0441DCCD2A86D0C700F64A8B /* JSONNull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONNull.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		046EC1492A85D81400E313C4 /* holidayCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = holidayCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046EC14C2A85D81400E313C4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		046EC14E2A85D81400E313C4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		046EC1502A85D81400E313C4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		046EC1532A85D81400E313C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		046EC1552A85D81700E313C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		046EC1582A85D81700E313C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -173,6 +173,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		04245F752A8BFEBB000ADB5E /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				044616462A8BB217001E87E7 /* AlertManager.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		0448108A2A8A84EB00ADCF8B /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,7 +256,6 @@
 				04701AFD2A86814B004D79D4 /* Base */,
 				046EC14C2A85D81400E313C4 /* AppDelegate.swift */,
 				046EC14E2A85D81400E313C4 /* SceneDelegate.swift */,
-				046EC1502A85D81400E313C4 /* ViewController.swift */,
 				046EC1522A85D81400E313C4 /* Main.storyboard */,
 				046EC1552A85D81700E313C4 /* Assets.xcassets */,
 				046EC15A2A85D81700E313C4 /* Info.plist */,
@@ -286,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				0441DCC82A86D07000F64A8B /* HolidayModel.swift */,
+				04245F762A8BFEF0000ADB5E /* Country.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -293,10 +301,10 @@
 		04701AFF2A8687A6004D79D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				04245F752A8BFEBB000ADB5E /* Alert */,
 				0448108A2A8A84EB00ADCF8B /* Search */,
 				044968832A88034C000E3D54 /* List */,
 				0448108B2A8A84F400ADCF8B /* Details */,
-				044616462A8BB217001E87E7 /* AlertManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -451,9 +459,9 @@
 			files = (
 				040D99602A8B29E600B6A4B0 /* Constants.swift in Sources */,
 				0441DCCE2A86D0C700F64A8B /* JSONNull.swift in Sources */,
-				046EC1512A85D81400E313C4 /* ViewController.swift in Sources */,
 				0441DCD42A86D22F00F64A8B /* SearchHolidaysViewController.swift in Sources */,
 				040D99302A8B15B800B6A4B0 /* ExtensionsUILabel.swift in Sources */,
+				04245F772A8BFEF0000ADB5E /* Country.swift in Sources */,
 				044968A92A88313D000E3D54 /* ViewCode.swift in Sources */,
 				0448109A2A8A8D6E00ADCF8B /* HolidayDetailsViewModel.swift in Sources */,
 				0441DCC92A86D07000F64A8B /* HolidayModel.swift in Sources */,

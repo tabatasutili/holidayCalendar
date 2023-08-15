@@ -138,9 +138,5 @@ enum TypeElement: String, Codable {
 
 typealias Holidays = [HolidayModel]
 
-struct Country: Codable {
-    let countryCode, name: String
-}
 
-typealias Countrys = [Country]
 
