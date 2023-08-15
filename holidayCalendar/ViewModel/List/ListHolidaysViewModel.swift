@@ -13,17 +13,22 @@ class ListHolidaysViewModel {
     private var holidayList: Holidays = []
     private var country: String
     private var year: String
+    private var shortcut: Bool
     private weak var delegate:ReloadDataDelegate?
     
     
-    init(country: String, year: String) {
+    init(country: String, year: String, shortcut: Bool) {
         self.country = country
         self.year = year
+        self.shortcut = shortcut
         self.fetchHolidays()
     }
     
     private func fetchHolidays() {
-        let urlConcatenetion = Constants.apiUrl+year+Constants.bar+country
+        let nextHolidays = Constants.apiNextHoliday+country
+        let allHolidays = Constants.apiUrl+year+Constants.bar+country
+        
+        let urlConcatenetion = (shortcut ? nextHolidays : allHolidays)
         guard let url = URL(string: urlConcatenetion) else { return }
         let urlRequest = URLRequest(url: url)
         service.fetch(url: urlRequest, completion: { (result: Result<Holidays, Error>) in
@@ -50,6 +55,10 @@ class ListHolidaysViewModel {
     public func delegate(delegate:ReloadDataDelegate?) {
            self.delegate = delegate
        }
+    
+    public var isShortcut:Bool {
+        return shortcut
+        }
     
     public var numbOfRows:Int {
         return self.holidayList.count 

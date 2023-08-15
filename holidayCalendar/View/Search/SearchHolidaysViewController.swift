@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-
 import UIKit
 
 
@@ -26,12 +24,13 @@ class SearchHolidaysViewController: UIViewController {
     }
     
     private func setupNavigation(){
+        
         navigationController?.isNavigationBarHidden = false
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.barTintColor = UIColor(red: 0.18, green: 0.69, blue: 0.82, alpha: 1.00)
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = .white
-        let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(rightButtonTapped))
+        let rightBarButtonItem = UIBarButtonItem(title: Constants.local, style: UIBarButtonItem.Style.done, target: self, action: #selector(rightButtonTapped))
         navigationItem.rightBarButtonItem = rightBarButtonItem
         let customBackButton = UIBarButtonItem(title: Constants.back, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = customBackButton
@@ -45,27 +44,33 @@ class SearchHolidaysViewController: UIViewController {
     }
     
     @objc func rightButtonTapped() {
-           print("Right button tapped!")
-       }
-    
-    @objc private func buttonTapped() {
-        if let year = searchView.yearTextField.text, let country = searchView.countryTextField.text {
-            if !(year.count == Constants.numberZero) && !(country.count == Constants.numberZero) {
-                let viewModel = ListHolidaysViewModel(country: country, year: year)
-                let viewController = ListHolidaysViewController(viewModel:viewModel)
-                self.navigationController?.pushViewController(viewController, animated: true)
-            } else {
-                showAlert()
-            }
-        } else{
-            showAlert()
+        if let locale = Locale.current.regionCode {
+            let viewModel = ListHolidaysViewModel(country: locale, year: Constants.stringEmpty, shortcut: true)
+            let viewController = ListHolidaysViewController(viewModel:viewModel)
+            self.navigationController?.pushViewController(viewController, animated: true)
+        } else {
+            showAlert(title: Constants.alertLocalErroTitle, message:  Constants.alertLocalErromessage)
         }
     }
     
-    private func showAlert() {
+    @objc private func searchButtonTapped() {
+        if let year = searchView.yearTextField.text, let country = searchView.countryTextField.text {
+            if !(year.count == Constants.numberZero) && !(country.count == Constants.numberZero) {
+                let viewModel = ListHolidaysViewModel(country: country, year: year, shortcut: false)
+                let viewController = ListHolidaysViewController(viewModel:viewModel)
+                self.navigationController?.pushViewController(viewController, animated: true)
+            } else {
+                showAlert(title: Constants.alertEmptyTitle, message:  Constants.alertEmptyMessage)
+            }
+        } else{
+            showAlert(title: Constants.alertEmptyTitle, message:  Constants.alertEmptyMessage)
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
         if let navController = self.navigationController {
-            alertManager.showAlert(title: Constants.alertEmptyTitle,
-                                   message: Constants.alertEmptyMessage,
+            alertManager.showAlert(title: title,
+                                   message: message,
                                    goBack: false,
                                    navigationController: navController)
 
@@ -101,7 +106,7 @@ extension SearchHolidaysViewController: ViewCode {
         searchView.countryTextField.delegate = self
         searchView.yearTextField.delegate = self
                 
-        searchView.searchButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        searchView.searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
     }
     
     

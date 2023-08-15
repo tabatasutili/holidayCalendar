@@ -47,7 +47,7 @@ class ListHolidaysViewController: UIViewController {
 
     override func viewDidLoad() {
         setupView()
-        self.titleLabel.text = viewModel.getCountry+" - "+viewModel.getYear
+        self.titleLabel.text = (viewModel.isShortcut ? Constants.nextHolidays : viewModel.getCountry+" - "+viewModel.getYear)
         self.viewModel.delegate(delegate: self)
     }
 }

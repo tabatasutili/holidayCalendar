@@ -35,7 +35,7 @@ class HolidayDetailsViewModel {
     }
     
     public var getDate:String {
-        return Constants.dateTitle + self.holiday.date
+        return Constants.dateTitle + formatDate(dateString: self.holiday.date)
     }
     
     public var getType:String {
@@ -64,6 +64,17 @@ class HolidayDetailsViewModel {
     
     public func currentDetail(indexPath: IndexPath) -> String {
             return self.detailsList[indexPath.row]
+        }
+    
+    func formatDate(dateString: String) -> String {
+            let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.dateFormatOriginal
+            if let date = dateFormatter.date(from: dateString) {
+                let newDateFormatter = DateFormatter()
+                newDateFormatter.dateFormat = Constants.dateFormated
+                return newDateFormatter.string(from: date)
+            }
+            return Constants.dateDefault
         }
     
 }
